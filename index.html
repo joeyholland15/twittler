@@ -11,19 +11,28 @@
         var $body = $('body');
         $body.html('');
         
-        
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        function loadTweets() {
+        	var index = streams.home.length - 1;
+        	while(index >= 0){
+          		var tweet = streams.home[index];
+          		var $tweet = $('<div class='+tweet.user+'></div>');
+          		$tweet.text('@' + tweet.user + ': ' + tweet.message);
+          		$tweet.prependTo($body);
+          		index -= 1;
+        	}
         }
         
+        loadTweets();
         
         var newTweet = $("<button>New Tweets</button>");
         newTweet.appendTo($body);
+        
+        $("button").on("click", loadTweets);
+        
+        $("button").css({'color': 'white', 'background-color': '#4169E1', 'margin-top': '20px',
+        'border-radius': '5px', 'font-family': 'Tahoma, Geneva, sans-serif'});
+        
+        $("div").css({'font-family': 'Tahoma, Geneva, sans-serif'});
         
         
       });
