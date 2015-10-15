@@ -5,8 +5,11 @@
     <script src="data_generator.js"></script>
   </head>
   <body>
+  
     <script>
 
+			
+		
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
@@ -16,7 +19,9 @@
         	while(index >= 0){
           		var tweet = streams.home[index];
           		var $tweet = $('<div class='+tweet.user+'></div>');
-          		$tweet.text('@' + tweet.user + ': ' + tweet.message);
+          		$tweet.text(': ' + tweet.message);
+          		$('<span class="timestamp">'+tweet.created_at+'</span>').appendTo($tweet);
+          		$('<strong class="user-'+tweet.user+'">@'+tweet.user+'</strong>').prependTo($tweet);
           		$tweet.prependTo($body);
           		index -= 1;
         	}
@@ -24,16 +29,29 @@
         
         loadTweets();
         
+        $("<h1>twittler news feed</h1>").prependTo($body);
+        
         var newTweet = $("<button>New Tweets</button>");
         newTweet.appendTo($body);
         
         $("button").on("click", loadTweets);
         
-        $("button").css({'color': 'white', 'background-color': '#4169E1', 'margin-top': '20px',
+        $(".user-mracus").on("click", function() {
+        	$(".shawndrost").remove();
+        	$(".sharksforcheap").remove();
+        	$(".douglascalhoun").remove();
+        });
+        
+        $("button").css({'color': 'white', 'background-color': '#4169E1',
         'border-radius': '5px', 'font-family': 'Tahoma, Geneva, sans-serif'});
         
-        $("div").css({'font-family': 'Tahoma, Geneva, sans-serif'});
+        $("div").css({'font-family': 'Tahoma, Geneva, sans-serif', 'margin': '10px', 'border':
+        '1px solid black','padding':'5px', 'border-radius':'5px'});
         
+        $("h1").css({'display': 'inline','color': 'white', 'background-color': '#4169E1',
+        'padding':'3px 5px 3px 5px','border-radius':'5px'});
+        
+        $(".timestamp").css({'float':'right'});
         
       });
 
