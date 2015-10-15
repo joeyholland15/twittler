@@ -8,35 +8,40 @@
   
     <script>
 
-			
 		
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
         
+        var index = streams.home.length - 1;
+        var refreshPoint = 0;
+        
+        $("<h1>twittler news feed</h1>").prependTo($body);
+        
         function loadTweets() {
-        	var index = streams.home.length - 1;
-        	while(index >= 0){
+        	while(index >= refreshPoint){
           		var tweet = streams.home[index];
           		var $tweet = $('<div class='+tweet.user+'></div>');
           		$tweet.text(': ' + tweet.message);
           		$('<span class="timestamp">'+tweet.created_at+'</span>').appendTo($tweet);
-          		$('<strong class="user-'+tweet.user+'">@'+tweet.user+'</strong>').prependTo($tweet);
-          		$tweet.prependTo($body);
+          		$('<span class="userName-'+tweet.user+'">@'+tweet.user+'</span>').prependTo($tweet);
+          		$tweet.insertAfter("h1");
           		index -= 1;
         	}
+        	index = streams.home.length - 1;
+        	refreshPoint = index; 
         }
         
         loadTweets();
         
-        $("<h1>twittler news feed</h1>").prependTo($body);
+        
         
         var newTweet = $("<button>New Tweets</button>");
         newTweet.appendTo($body);
         
         $("button").on("click", loadTweets);
         
-        $(".user-mracus").on("click", function() {
+        $(".userName-mracus").on("click", function() {
         	$(".shawndrost").remove();
         	$(".sharksforcheap").remove();
         	$(".douglascalhoun").remove();
