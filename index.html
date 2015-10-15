@@ -16,14 +16,22 @@
         var index = streams.home.length - 1;
         var refreshPoint = 0;
         
-        $("<h1>twittler news feed</h1>").prependTo($body);
+        $("<h1>twittler <span id='news-feed'>news feed</span></h1>").prependTo($body);
         
+        function formattedTime(time) {
+        	var timeArray = time.toString().split(" ");
+        	var date = timeArray.slice(0,4).join(" ");
+        	var formatted = timeArray[4].split(":").slice(0,2).join(":");
+        	return "On " + date + " at " + formatted;
+        };
+        	
         function loadTweets() {
         	while(index >= refreshPoint){
           		var tweet = streams.home[index];
           		var $tweet = $('<div class='+tweet.user+'></div>');
+          		var formatted = formattedTime(tweet.created_at);
           		$tweet.text(': ' + tweet.message);
-          		$('<span class="timestamp">'+tweet.created_at+'</span>').appendTo($tweet);
+          		$('<span class="timestamp">'+formatted+'</span>').appendTo($tweet);
           		$('<span class="userName-'+tweet.user+'">@'+tweet.user+'</span>').prependTo($tweet);
           		$tweet.insertAfter("h1");
           		index -= 1;
@@ -34,17 +42,14 @@
         
         loadTweets();
         
-        
-        
         var newTweet = $("<button>New Tweets</button>");
         newTweet.appendTo($body);
         
-        $("button").on("click", loadTweets);
         
         $(".userName-mracus").on("click", function() {
-        	$(".shawndrost").remove();
-        	$(".sharksforcheap").remove();
-        	$(".douglascalhoun").remove();
+        	$(".shawndrost").fadeToggle();
+        	$(".sharksforcheap").fadeToggle();
+        	$(".douglascalhoun").fadeToggle();
         });
         
         $("button").css({'color': 'white', 'background-color': '#4169E1',
@@ -54,9 +59,14 @@
         '1px solid black','padding':'5px', 'border-radius':'5px'});
         
         $("h1").css({'display': 'inline','color': 'white', 'background-color': '#4169E1',
-        'padding':'3px 5px 3px 5px','border-radius':'5px'});
+        'padding':'3px 0 3px 5px','border-radius':'5px'});
         
         $(".timestamp").css({'float':'right'});
+        
+        $("#news-feed").css({'display': 'inline','color': '#4169E1', 'background-color': 'white',
+        'padding':'3px 0 3px 5px','border-radius':'5px'});
+        
+        $("button").on("click", loadTweets);
         
       });
 
