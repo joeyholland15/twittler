@@ -17,6 +17,10 @@
         
         $("<h1>twittler <span id='news-feed'>news feed</span></h1>").prependTo($body);
         
+        $("<button class='new-tweet'>New Tweets</button>").insertAfter("h1");
+        
+        $($body).css({'background-color': 'azure'});
+        
         function formattedTime(time) {
         	var timeArray = time.toString().split(" ");
         	var date = timeArray.slice(0,4).join(" ");
@@ -27,11 +31,24 @@
         };
         
         function userTimelineFilter(a,b,c) {
-        	$(a).toggle();
-        	$(b).toggle();
-        	$(c).toggle();
-        	$(".new-tweet").toggle();
-        	$("#to-main").toggle();
+        	$(a).hide();
+        	$(b).hide();
+        	$(c).hide();
+        };
+        
+        function applyTimelines() {
+        	$(".userName-mracus").on("click", function() {
+        		userTimelineFilter(".shawndrost", ".sharksforcheap", ".douglascalhoun");
+        	});
+        	$(".userName-shawndrost").on("click", function() {
+        		userTimelineFilter(".mracus", ".sharksforcheap", ".douglascalhoun");
+        	});
+        	$(".userName-sharksforcheap").on("click", function() {
+        		userTimelineFilter(".mracus", ".shawndrost", ".douglascalhoun");
+        	});
+        	$(".userName-douglascalhoun").on("click", function() {
+        		userTimelineFilter(".mracus", ".shawndrost", ".sharksforcheap");
+        	});
         };
         	
         function loadTweets() {
@@ -41,8 +58,8 @@
           		var formatted = formattedTime(tweet.created_at);
           		$tweet.text(': ' + tweet.message);
           		$('<span class="timestamp">'+formatted+'</span>').appendTo($tweet);
-          		$('<a href="#" class="userName-'+tweet.user+'">@'+tweet.user+'</a>').prependTo($tweet);
-          		$tweet.insertAfter("h1");
+          		$('<span class="link userName-'+tweet.user+'">@'+tweet.user+'</span>').prependTo($tweet);
+          		$tweet.insertAfter("button");
           		index += 1;
         	} 
         };
@@ -50,49 +67,29 @@
         function applyStyle() {
         	$("div").css({'font-family': 'Tahoma, Geneva, sans-serif', 'margin': '10px', 'border':
         	'1px solid black','padding':'5px', 'border-radius':'5px'});	
-          	$(".timestamp").css({'float':'right', 'font-size': '12px'});
+          	$(".timestamp").css({'position':'absolute', 'right':'25px', 'font-size': '12px'});
+          	$(".link").css({'color': 'blue', 'text-decoration': 'underline'});
         };
         
         loadTweets();
         applyStyle();
-        
-        $("<button class='new-tweet'>New Tweets</button>").appendTo($body);
-        
-        $("<p id='to-main'>Click username to return to main news feed</p>").appendTo($body);
-        
-        $(".userName-mracus").on("click", function() {
-        	userTimelineFilter(".shawndrost", ".sharksforcheap", ".douglascalhoun");
-        });
-        
-        $(".userName-shawndrost").on("click", function() {
-        	userTimelineFilter(".mracus", ".sharksforcheap", ".douglascalhoun");
-        });
-        
-        $(".userName-sharksforcheap").on("click", function() {
-        	userTimelineFilter(".mracus", ".shawndrost", ".douglascalhoun");
-        });
-        
-        $(".userName-douglascalhoun").on("click", function() {
-        	userTimelineFilter(".mracus", ".shawndrost", ".sharksforcheap");
-        });
-        
-        $("button").css({'color': 'white', 'background-color': '#4169E1',
-        'border-radius': '5px', 'font-family': 'Tahoma, Geneva, sans-serif', 'margin':'10px',
-        'height': '30px', 'width': '120px', 'font-size': '16px'});
-        
-        $("h1").css({'display': 'inline','color': 'white', 'background-color': '#4169E1',
-        'padding':'3px 0 3px 5px','border-radius':'5px', 'margin': '10px'});
-        
-        $("#news-feed").css({'display': 'inline','color': '#4169E1', 'background-color': 'white',
-        'padding':'3px 0 3px 5px'});
-        
-        $("#to-main").css({'display':'none', 'font-family': 'Tahoma, Geneva, sans-serif',
-        'margin': '10px', 'font-size': '12px'});
+        applyTimelines();
         
         $(".new-tweet").on("click", function() {
         	loadTweets();
         	applyStyle();
+        	applyTimelines();
         });
+        
+        $("button").css({'color': 'white', 'background-color': '#4169E1',
+        'border-radius': '5px', 'font-family': 'Tahoma, Geneva, sans-serif', 'margin':
+        '0 10px 10px 500px','height': '30px', 'width': '120px', 'font-size': '16px'});
+        
+        $("h1").css({'display': 'inline','color': 'white', 'background-color': '#4169E1',
+        'padding':'3px 0 3px 5px','border-radius':'5px', 'margin': '10px'});
+        
+        $("#news-feed").css({'display': 'inline','color': '#4169E1', 'background-color': 'azure',
+        'padding':'3px 0 3px 5px'});
         
       });
 
