@@ -3,6 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="main.css">
   </head>
   <body>
   
@@ -19,7 +20,6 @@
         
         $("<button class='new-tweet'>New Tweets</button>").insertAfter("h1");
         
-        $($body).css({'background-color': 'azure'});
         
         function formattedTime(time) {
         	var timeArray = time.toString().split(" ");
@@ -64,33 +64,13 @@
         	} 
         };
         
-        function applyStyle() {
-        	$("div").css({'font-family': 'Tahoma, Geneva, sans-serif', 'margin': '10px', 'border':
-        	'1px solid black','padding':'5px', 'border-radius':'5px'});	
-          	$(".timestamp").css({'position':'absolute', 'right':'25px', 'font-size': '12px'});
-          	$(".link").css({'color': 'blue', 'text-decoration': 'underline'});
-        };
-        
         loadTweets();
-        applyStyle();
         applyTimelines();
         
         $(".new-tweet").on("click", function() {
         	loadTweets();
-        	applyStyle();
         	applyTimelines();
         });
-        
-        $("button").css({'color': 'white', 'background-color': '#4169E1',
-        'border-radius': '5px', 'font-family': 'Tahoma, Geneva, sans-serif', 'margin':
-        '0 10px 10px 500px','height': '30px', 'width': '120px', 'font-size': '16px'});
-        
-        $("h1").css({'display': 'inline','color': 'white', 'background-color': '#4169E1',
-        'padding':'3px 0 3px 5px','border-radius':'5px', 'margin': '10px'});
-        
-        $("#news-feed").css({'display': 'inline','color': '#4169E1', 'background-color': 'azure',
-        'padding':'3px 0 3px 5px'});
-        
       });
 
     </script>
