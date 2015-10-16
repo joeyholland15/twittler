@@ -45,9 +45,16 @@
           		$tweet.insertAfter("h1");
           		index += 1;
         	} 
-        }
+        };
+        
+        function applyStyle() {
+        	$("div").css({'font-family': 'Tahoma, Geneva, sans-serif', 'margin': '10px', 'border':
+        	'1px solid black','padding':'5px', 'border-radius':'5px'});	
+          	$(".timestamp").css({'float':'right', 'font-size': '12px'});
+        };
         
         loadTweets();
+        applyStyle();
         
         $("<button class='new-tweet'>New Tweets</button>").appendTo($body);
         
@@ -73,13 +80,8 @@
         'border-radius': '5px', 'font-family': 'Tahoma, Geneva, sans-serif', 'margin':'10px',
         'height': '30px', 'width': '120px', 'font-size': '16px'});
         
-        $("div").css({'font-family': 'Tahoma, Geneva, sans-serif', 'margin': '10px', 'border':
-        '1px solid black','padding':'5px', 'border-radius':'5px'});
-        
         $("h1").css({'display': 'inline','color': 'white', 'background-color': '#4169E1',
         'padding':'3px 0 3px 5px','border-radius':'5px', 'margin': '10px'});
-        
-        $(".timestamp").css({'float':'right', 'font-size': '12px'});
         
         $("#news-feed").css({'display': 'inline','color': '#4169E1', 'background-color': 'white',
         'padding':'3px 0 3px 5px'});
@@ -87,7 +89,10 @@
         $("#to-main").css({'display':'none', 'font-family': 'Tahoma, Geneva, sans-serif',
         'margin': '10px', 'font-size': '12px'});
         
-        $(".new-tweet").on("click", loadTweets);
+        $(".new-tweet").on("click", function() {
+        	loadTweets();
+        	applyStyle();
+        });
         
       });
 
