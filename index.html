@@ -18,7 +18,11 @@
         
         $("<h1>twittler <span id='news-feed'>news feed</span></h1>").prependTo($body);
         
-        $("<button class='new-tweet'>New Tweets</button>").insertAfter("h1");
+        $("<button class='new-tweet'>New Tweets</button>").appendTo($body);
+        
+        $("<div class='stream'></div>").appendTo($body);
+        
+        $("<h2>News Feed</h2>").prependTo(".stream");
         
         
         function formattedTime(time) {
@@ -31,9 +35,9 @@
         };
         
         function userTimelineFilter(a,b,c) {
-        	$(a).hide();
-        	$(b).hide();
-        	$(c).hide();
+        	$(a).toggleClass("filter");
+        	$(b).toggleClass("filter");
+        	$(c).toggleClass("filter");
         };
         
         function applyTimelines() {
@@ -57,9 +61,10 @@
           		var $tweet = $('<div class='+tweet.user+'></div>');
           		var formatted = formattedTime(tweet.created_at);
           		$tweet.text(': ' + tweet.message);
-          		$('<span class="timestamp">'+formatted+'</span>').appendTo($tweet);
+          		$('<p class="timestamp">'+formatted+'</p>').appendTo($tweet);
           		$('<span class="link userName-'+tweet.user+'">@'+tweet.user+'</span>').prependTo($tweet);
-          		$tweet.insertAfter("button");
+          		($tweet).addClass("tweet");
+          		$tweet.insertAfter("h2");
           		index += 1;
         	} 
         };

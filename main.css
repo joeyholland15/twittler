@@ -1,10 +1,9 @@
 h1 {
-	display: inline;
 	color: white;
 	background-color: #4169E1;
     padding: 3px 0 3px 5px;
     border-radius: 5px; 
-    margin: 10px
+    margin: 10px;
 }
 
 #news-feed {
@@ -29,24 +28,33 @@ body {
 	background-color: azure;
 }
 
-div {
+.tweet {
 	font-family: Tahoma, Geneva, sans-serif; 
-	margin: 10px; 
-	border: 1px solid black;
+	margin: 5px;
 	padding: 5px; 
 	border-radius: 5px
 }
         		
 .timestamp {
-	position: absolute; 
-	right: 25px; 
-	font-size: 12px
+	font-size: 10px;
+	font-style: italic;
+	margin-top: 3px;
 }
 
 .link {
 	color: blue; 
 	text-decoration: underline
 }
+
+.stream, .users {
+	display: inline-block;
+}
+
+.filter {
+	display: none
+}
+
+
 
 
 
