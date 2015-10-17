@@ -16,13 +16,11 @@
         
         var index = 0;
         
-        $("<h1>twittler <span id='news-feed'>news feed</span></h1>").prependTo($body);
-        
-        $("<button class='new-tweet'>New Tweets</button>").appendTo($body);
+        $("<h1>twittler</h1>").prependTo($body);
         
         $("<div class='stream'></div>").appendTo($body);
         
-        $("<h2>News Feed</h2>").prependTo(".stream");
+        $("<button id='refresh'>New Tweets</button>").appendTo(".stream");
         
         
         function formattedTime(time) {
@@ -64,18 +62,27 @@
           		$('<p class="timestamp">'+formatted+'</p>').appendTo($tweet);
           		$('<span class="link userName-'+tweet.user+'">@'+tweet.user+'</span>').prependTo($tweet);
           		($tweet).addClass("tweet");
-          		$tweet.insertAfter("h2");
+          		$tweet.insertAfter("#refresh");
           		index += 1;
         	} 
         };
         
+        function newTweets() {
+        	setInterval(function() {
+        		$("#refresh").text("New Tweets ("+((streams.home.length)-index)+")");
+        	}, 5000);
+        }
+        
+        $("#refresh").on("click", function() {
+        	loadTweets();
+        	$("#refresh").text("New Tweets");
+        	applyTimelines();
+        });
+        
+        newTweets();
         loadTweets();
         applyTimelines();
         
-        $(".new-tweet").on("click", function() {
-        	loadTweets();
-        	applyTimelines();
-        });
       });
 
     </script>

@@ -3,24 +3,20 @@ h1 {
 	background-color: #4169E1;
     padding: 3px 0 3px 5px;
     border-radius: 5px; 
-    margin: 10px;
+    margin: 3px;
+    text-align: center;
 }
 
-#news-feed {
-	display: inline;
-	color: #4169E1; 
-	background-color: azure;
-    padding: 3px 0 3px 5px
-}
+
 
 button {
 	color: white; 
 	background-color: #4169E1;
     border-radius: 5px;
     font-family: Tahoma, Geneva, sans-serif;
-    margin: 0 10px 10px 500px;
+    margin: 10px; 
     height: 30px; 
-    width: 120px;
+    width: 150px;
     font-size: 16px;
 }
 
