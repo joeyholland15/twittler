@@ -26,24 +26,36 @@ body {
 
 .tweet {
 	font-family: Tahoma, Geneva, sans-serif; 
-	margin: 5px;
+	margin: 0 5px 0 5px;
 	padding: 5px; 
 	border-radius: 5px
 }
         		
-.timestamp {
-	font-size: 10px;
+.timestamp, .username {
+	font-size: 12px;
 	font-style: italic;
 	margin-top: 3px;
 }
 
-.link {
-	color: blue; 
-	text-decoration: underline
-}
-
 .stream, .users {
 	display: inline-block;
+}
+
+.users {
+	position: absolute;
+	top: 50px;
+	right: 200px;
+	font-family: Tahoma, Geneva, sans-serif; 
+	color: #4169E1; 
+	display: block;
+}
+
+.users h2 {
+	text-align:center;
+}
+
+.username {
+	margin: 0 0 3px 0;
 }
 
 .filter {

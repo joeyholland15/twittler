@@ -22,6 +22,15 @@
         
         $("<button id='refresh'>New Tweets</button>").appendTo(".stream");
         
+        $("<div class='users'></div>").appendTo($body);
+        
+        $("<h2>Users<h2>").prependTo(".users");
+        
+        $("<p id='userName-mracus'>@mracus</p>").appendTo(".users");
+        $("<p id='userName-shawndrost'>@shawndrost</p>").appendTo(".users");
+        $("<p id='userName-sharksforcheap'>@sharksforcheap</p>").appendTo(".users");
+        $("<p id='userName-douglascalhoun'>@douglascalhoun</p>").appendTo(".users");
+        
         
         function formattedTime(time) {
         	var timeArray = time.toString().split(" ");
@@ -37,30 +46,15 @@
         	$(b).toggleClass("filter");
         	$(c).toggleClass("filter");
         };
-        
-        function applyTimelines() {
-        	$(".userName-mracus").on("click", function() {
-        		userTimelineFilter(".shawndrost", ".sharksforcheap", ".douglascalhoun");
-        	});
-        	$(".userName-shawndrost").on("click", function() {
-        		userTimelineFilter(".mracus", ".sharksforcheap", ".douglascalhoun");
-        	});
-        	$(".userName-sharksforcheap").on("click", function() {
-        		userTimelineFilter(".mracus", ".shawndrost", ".douglascalhoun");
-        	});
-        	$(".userName-douglascalhoun").on("click", function() {
-        		userTimelineFilter(".mracus", ".shawndrost", ".sharksforcheap");
-        	});
-        };
         	
         function loadTweets() {
         	while(index < streams.home.length){
           		var tweet = streams.home[index];
           		var $tweet = $('<div class='+tweet.user+'></div>');
           		var formatted = formattedTime(tweet.created_at);
-          		$tweet.text(': ' + tweet.message);
+          		$tweet.text(tweet.message);
           		$('<p class="timestamp">'+formatted+'</p>').appendTo($tweet);
-          		$('<span class="link userName-'+tweet.user+'">@'+tweet.user+'</span>').prependTo($tweet);
+          		$('<p class="username">@'+tweet.user+'</p>').prependTo($tweet);
           		($tweet).addClass("tweet");
           		$tweet.insertAfter("#refresh");
           		index += 1;
@@ -76,12 +70,23 @@
         $("#refresh").on("click", function() {
         	loadTweets();
         	$("#refresh").text("New Tweets");
-        	applyTimelines();
         });
         
         newTweets();
         loadTweets();
-        applyTimelines();
+        
+        $(".users #userName-mracus").on("click", function() {
+        	userTimelineFilter(".shawndrost", ".sharksforcheap", ".douglascalhoun");
+        });
+        $(".users #userName-shawndrost").on("click", function() {
+        	userTimelineFilter(".mracus", ".sharksforcheap", ".douglascalhoun");
+        });
+        $(".users #userName-sharksforcheap").on("click", function() {
+        	userTimelineFilter(".mracus", ".shawndrost", ".douglascalhoun");
+        });
+        $(".users #userName-douglascalhoun").on("click", function() {
+        	userTimelineFilter(".mracus", ".shawndrost", ".sharksforcheap");
+        });
         
       });
 
