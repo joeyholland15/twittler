@@ -77,15 +77,19 @@
         
         $(".users #userName-mracus").on("click", function() {
         	userTimelineFilter(".shawndrost", ".sharksforcheap", ".douglascalhoun");
+        	userTimelineFilter("#userName-shawndrost", "#userName-sharksforcheap", "#userName-douglascalhoun");
         });
         $(".users #userName-shawndrost").on("click", function() {
         	userTimelineFilter(".mracus", ".sharksforcheap", ".douglascalhoun");
+        	userTimelineFilter("#userName-mracus", "#userName-sharksforcheap", "#userName-douglascalhoun");
         });
         $(".users #userName-sharksforcheap").on("click", function() {
         	userTimelineFilter(".mracus", ".shawndrost", ".douglascalhoun");
+        	userTimelineFilter("#userName-mracus", "#userName-shawndrost", "#userName-douglascalhoun");
         });
         $(".users #userName-douglascalhoun").on("click", function() {
         	userTimelineFilter(".mracus", ".shawndrost", ".sharksforcheap");
+        	userTimelineFilter("#userName-mracus", "#userName-sharksforcheap", "#userName-shawndrost");
         });
         
       });
