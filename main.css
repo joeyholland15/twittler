@@ -7,25 +7,22 @@ h1 {
     text-align: center;
 }
 
-
-
 button {
 	color: white; 
 	background-color: #4169E1;
     border-radius: 5px;
-    font-family: Tahoma, Geneva, sans-serif;
     margin: 10px; 
     height: 30px; 
-    width: 150px;
+    width: 175px;
     font-size: 16px;
 }
 
 body {
 	background-color: azure;
+	font-family: Tahoma, Geneva, sans-serif;
 }
 
-.tweet {
-	font-family: Tahoma, Geneva, sans-serif; 
+.tweet { 
 	margin: 0 5px 0 5px;
 	padding: 5px; 
 	border-radius: 5px
@@ -34,7 +31,7 @@ body {
 .timestamp, .username {
 	font-size: 12px;
 	font-style: italic;
-	margin-top: 3px;
+	margin: 3px 3px 0 0px;
 }
 
 .stream, .users {
@@ -45,10 +42,12 @@ body {
 	position: absolute;
 	top: 50px;
 	right: 200px;
-	font-family: Tahoma, Geneva, sans-serif; 
-	color: #4169E1; 
+	color: #4169E1;  
+}
+
+.users p {
 	text-decoration: underline;
-	cursor: pointer; 
+	cursor: pointer;
 }
 
 .users h2 {
@@ -62,6 +61,7 @@ body {
 .filter {
 	display: none
 }
+
 
 
 
